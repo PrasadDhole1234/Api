@@ -1,19 +1,17 @@
 from flask import Flask, request, jsonify
 import pickle
 
-
 app = Flask(__name__)
 
 # Load the saved model and other objects
 with open('decision_tree_model.pkl', 'rb') as model_file:
     saved_cv, saved_label_encoder, saved_clf = pickle.load(model_file)
-
 @app.route('/')
-def home():
-    return "hello world"
+def hello_world():
+    return 'Hello, World!'
+
 @app.route('/predict', methods=['POST'])
 def predict():
-
     try:
         # Get the input text from the JSON request
         data = request.get_json()
